@@ -1,1 +1,2 @@
-# https-github.com-pos-tech-soat08-03-easyOrder-challenge3-infrastructure
+Repositório dedicado para Infraestrutura (Terraform)
+- Inclui API GW, VPCs, Cognito, EKS etc
