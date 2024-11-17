@@ -53,10 +53,10 @@ resource "aws_cognito_user_pool_client" "easyorder_app_client" {
     generate_secret        = false
     allowed_oauth_flows_user_pool_client = true
     allowed_oauth_flows    = ["code", "implicit"]
-    allowed_oauth_scopes   = ["email", "openid", "profile"]
-    explicit_auth_flows = ["ALLOW_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH"]
+    allowed_oauth_scopes   = ["email", "openid"]
+    explicit_auth_flows = ["ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH"]
     prevent_user_existence_errors = "ENABLED"
-    callback_urls          = ["https://localhost:30000/"]
+    callback_urls          = ["https://localhost/"]
     supported_identity_providers = ["COGNITO"]
 }
 
