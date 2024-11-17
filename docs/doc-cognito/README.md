@@ -34,17 +34,8 @@ Uso de jwt - caso precise decodificar https://jwt.io/
 
 Terraform para testes está no diretório src/terraform/cognito
 
-Necessário a criação local de arquivo *aws_secrets.tfvars* com a seguinte estrutura
+Para execução do terraform
 ``` bash
-AWS_ACCESS_KEY_ID="sua chave aqui"
-AWS_SECRET_ACCESS_KEY="sua chave aqui"
-```
-
-Arquivo de exportação de variáveis de ambiente: *variables.tf*
-Arquivo principal para execução: *main.tf*
-
-Para execução do terraform, considerando a utilização de arquivo de variáveis (no diretório do cognito)
-``` bash
-terraform plan -var-file="aws_secrets.tfvars"
-terraform apply -var-file="aws_secrets.tfvars"
+terraform plan 
+terraform apply 
 ```

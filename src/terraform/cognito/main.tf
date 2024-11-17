@@ -8,8 +8,6 @@ terraform {
 }
 
 provider "aws" {
-  #access_key = var.AWS_ACCESS_KEY_ID
-  #secret_key = var.AWS_SECRET_ACCESS_KEY
   region     = "us-east-1"
 }
 
@@ -67,7 +65,7 @@ resource "aws_cognito_user" "admin_user" {
     user_pool_id = aws_cognito_user_pool.easyorder_admin_pool.id
     username     = "admin1"
     attributes = {
-        email = "marcio.saragiotto+admin1@gmail.com"
+        email = "email1@email.com"
     }
     password = "Admin123!"
     depends_on = [aws_cognito_user_pool.easyorder_admin_pool]
@@ -77,7 +75,7 @@ resource "aws_cognito_user" "store_admin_user" {
     user_pool_id = aws_cognito_user_pool.easyorder_admin_pool.id
     username     = "admin2"
     attributes = {
-        email = "marcio.saragiotto+admin2@gmail.com"
+        email = "email2@email.com"
     }
     password = "Admin123!"
     depends_on = [aws_cognito_user_pool.easyorder_admin_pool]
