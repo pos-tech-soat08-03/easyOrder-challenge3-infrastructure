@@ -37,7 +37,7 @@ override.tf.json
 terraform.rc
 
 # Ignore lock files
-*.lock.hcl
+*.hcl
 
 # Ignore VS Code settings
 */.vscode/*
