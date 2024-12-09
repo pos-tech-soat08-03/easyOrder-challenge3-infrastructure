@@ -1,6 +1,6 @@
 resource "aws_eks_node_group" "node-group" {
   cluster_name    = aws_eks_cluster.eks-cluster.name
-  node_group_name = "NG-${var.projectName}"
+  node_group_name = "node-group-${var.clusterName}"
   node_role_arn   = data.aws_iam_role.labrole.arn
   subnet_ids      = module.vpc.private_subnets
   disk_size       = 50

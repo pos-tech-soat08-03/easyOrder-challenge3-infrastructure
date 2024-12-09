@@ -2,19 +2,22 @@ variable "regionDefault" {
   default = "us-east-1"
 }
 
-variable "projectName" {
-  default = "nginx"
+variable "clusterName" {
+  description = "Nome do cluster"
 }
 
-variable "vpcCidr" {
-  default = "10.0.0.0/16"
+variable "bucket" {
+  description = "Nome do bucket S3 para armazenar o estado do Terraform"
+  
 }
 
 variable "instanceType" {
   default = "t2.micro"
 }
 
-variable "accountIdVoclabs" {}
+variable "accountIdVoclabs" {
+  description = "ID da conta AWS"
+}
 
 
 variable "policyArn" {
