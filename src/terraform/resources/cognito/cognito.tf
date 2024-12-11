@@ -13,7 +13,7 @@ provider "aws" {
 
 # Cria user pool com configs orientadas a usuarios administradores
 resource "aws_cognito_user_pool" "easyorder_admin_pool" {
-    name = "easyorder-admin-pool"
+    name = "var.user_pool_name"
 
     admin_create_user_config {
         allow_admin_create_user_only = true
@@ -60,22 +60,12 @@ resource "aws_cognito_user_pool_client" "easyorder_app_client" {
     supported_identity_providers = ["COGNITO"]
 }
 
-# Cria usuarios administradores iniciais, ativos
+# Cria usuario administrador inicial, ativo
 resource "aws_cognito_user" "admin_user" {
     user_pool_id = aws_cognito_user_pool.easyorder_admin_pool.id
-    username     = "admin1"
+    username     = "admin-loja"
     attributes = {
         email = "email1@email.com"
-    }
-    password = "Admin123!"
-    depends_on = [aws_cognito_user_pool.easyorder_admin_pool]
-}
-
-resource "aws_cognito_user" "store_admin_user" {
-    user_pool_id = aws_cognito_user_pool.easyorder_admin_pool.id
-    username     = "admin2"
-    attributes = {
-        email = "email2@email.com"
     }
     password = "Admin123!"
     depends_on = [aws_cognito_user_pool.easyorder_admin_pool]
