@@ -1,11 +1,11 @@
 name: Terraform CI Infra EasyOrder
 
 on:
-  push:
-    branches:
-      - 'feature/**'
-      - 'hotfix/**'
-      - 'chore/**'
+#  push:
+#    branches:
+#      - 'feature/**'
+#      - 'hotfix/**'
+#      - 'chore/**'
   pull_request:
     branches:
         - main
@@ -14,7 +14,13 @@ jobs:
   terraform:
     name: Terraform CI Pipeline
     runs-on: ubuntu-latest
-
+    
+    permissions:
+      id-token: write
+      contents: read
+      
+    if: github.ref == 'refs/heads/main'
+    environment: prod
     steps:
 
     - name: Checkout Código
