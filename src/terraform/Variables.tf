@@ -1,11 +1,12 @@
-variable "accessConfig" {
-  default = "API_AND_CONFIG_MAP"
+data "aws_iam_role" "labrole" {
+  name = "LabRole"
 }
+
 variable "accountIdVoclabs" {
   description = "ID da conta AWS"
 }
-variable "bucket" {
-  default = "terraform-state-easyorder"
+variable "accessConfig" {
+  default = "API_AND_CONFIG_MAP"
 }
 variable "clusterName" {
   default = "easyorder"

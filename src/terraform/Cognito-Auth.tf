@@ -1,19 +1,7 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-provider "aws" {
-  region     = "us-east-1"
-}
 
 # Cria user pool com configs orientadas a usuarios administradores
 resource "aws_cognito_user_pool" "easyorder_admin_pool" {
-    name = "var.user_pool_name"
+    name = "easyorder-admin-pool"
 
     admin_create_user_config {
         allow_admin_create_user_only = true
