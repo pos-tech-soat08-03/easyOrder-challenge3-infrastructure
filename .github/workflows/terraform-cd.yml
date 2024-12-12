@@ -20,9 +20,9 @@ on:
       aws_account_id:
         description: 'AWS Account ID'
         required: true
-#      aws_backend_bucket:
-#        description: 'AWS S3 Bucket para armazenamento do estado do Terraform'
-#        required: true
+      aws_backend_bucket:
+        description: 'AWS S3 Bucket para armazenamento do estado do Terraform'
+        required: true
       aws_region:
         description: 'AWS Region'
         required: true
@@ -55,6 +55,14 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
 
+    - name: Gerar arquivo backend.tfvars
+      run: |
+        cat <<EOF > backend.tfvars
+        bucket = "${{ github.event.inputs.aws_backend_bucket }}"
+        key    = "easyorder-infra/terraform.tfstate"
+        region = "${{ github.event.inputs.aws_region }}"
+        EOF
+
     - name: Configure AWS CLI 
       uses: aws-actions/configure-aws-credentials@v1
       with: 
@@ -68,7 +76,7 @@ jobs:
 
     - name: Terraform Init
       working-directory: src/terraform
-      run: terraform init
+      run: terraform init -backend-config=backend.tfvars
 
     - name: Terraform Validate
       working-directory: src/terraform
@@ -77,13 +85,11 @@ jobs:
     - name: Terraform Plan
       env: 
         TF_VAR_accountIdVoclabs: ${{ github.event.inputs.aws_account_id }}
-#        TF_VAR_backendBucketVoclabs: ${{ github.event.inputs.aws_backend_bucket }}
       working-directory: src/terraform
       run: terraform plan -out=plan.out
 
     - name: Terraform Apply
       env: 
         TF_VAR_accountIdVoclabs: ${{ github.event.inputs.aws_account_id }}
-#        TF_VAR_backendBucketVoclabs: ${{ github.event.inputs.aws_backend_bucket }}
       working-directory: src/terraform
       run: terraform apply -auto-approve

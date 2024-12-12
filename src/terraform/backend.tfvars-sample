@@ -1,0 +1,3 @@
+bucket = "nome-do-bucket-aqui"
+key    = "easyorder-infra/terraform.tfstate"
+region = "us-east-1"
