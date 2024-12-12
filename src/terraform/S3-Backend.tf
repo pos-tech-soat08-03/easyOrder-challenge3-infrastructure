@@ -1,7 +1,21 @@
+variable "bucket" {
+  description = "The S3 bucket to store the Terraform state file"
+  default = "terraform-state-easyorder"
+}
+variable "key" {
+  description = "The S3 key to store the Terraform state file"
+  default = "easyorder-infra/terraform.tfstate"
+}
+variable "region" {
+  description = "The S3 region to store the Terraform state file"
+  default = "us-east-1"
+}
+
 terraform {
   backend "s3" {
-    bucket = "terraform-state-easyorder-5457a05cc9784e29b347c29f82dc19cc"
-    key    = "easyorder-infra/terraform.tfstate"
-    region = "us-east-1"
+    bucket = "${var.bucket}"
+    key    = "${var.key}"
+    region = "${var.region}"
   }
 }
+
