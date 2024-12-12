@@ -1,6 +1,6 @@
 name: Terraform CD (Deploy) Infra EasyOrder
 
-on:
+on: 
   workflow_dispatch: # Disparo manual
     inputs:
       environment:
