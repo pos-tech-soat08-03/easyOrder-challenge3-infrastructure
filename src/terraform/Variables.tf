@@ -2,9 +2,10 @@ data "aws_iam_role" "labrole" {
   name = "LabRole"
 }
 
-variable "backendBucketVoclabs" {
-  description = "Bucket para armazenamento de arquivos de backend"
-}
+#variable "backendBucketVoclabs" {
+#  description = "Bucket para armazenamento de arquivos de backend"
+#}
+
 variable "accountIdVoclabs" {
   description = "ID da conta AWS"
 }
