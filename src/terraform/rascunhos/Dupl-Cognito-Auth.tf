@@ -64,3 +64,7 @@ resource "aws_cognito_user" "admin_user" {
   password   = "Admin123!"
   depends_on = [aws_cognito_user_pool.easyorder_admin_pool]
 }
+
+output "cognito_login_url" {
+  value = "https://${aws_cognito_user_pool_domain.easyorder_domain.domain}.auth.${var.regionDefault}.amazoncognito.com/login?client_id=${aws_cognito_user_pool_client.easyorder_app_client.id}&response_type=token&scope=email+openid&redirect_uri=https://localhost/"
+}

@@ -4,6 +4,7 @@ data "aws_iam_role" "labrole" {
 
 variable "accountIdVoclabs" {
   description = "ID da conta AWS"
+  default = "442742266432"
 }
 variable "accessConfig" {
   default = "API_AND_CONFIG_MAP"
