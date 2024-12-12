@@ -4,7 +4,7 @@ data "aws_iam_role" "labrole" {
 
 variable "accountIdVoclabs" {
   description = "ID da conta AWS"
-  default = "442742266432"
+  default     = "442742266432"
 }
 variable "accessConfig" {
   default = "API_AND_CONFIG_MAP"
@@ -23,9 +23,9 @@ variable "regionDefault" {
 }
 variable "bucketStates" {
   description = "The S3 bucket to store the Terraform state file"
-  default = "terraform-state-easyorder"
+  default     = "terraform-state-easyorder"
 }
 variable "keyStates" {
   description = "The S3 key to store the Terraform state file"
-  default = "easyorder-infra/terraform.tfstate"
+  default     = "easyorder-infra/terraform.tfstate"
 }
