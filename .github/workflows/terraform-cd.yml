@@ -44,5 +44,7 @@ jobs:
       run: terraform plan -out=plan.out
 
     - name: Terraform Apply
+      env: 
+        TF_VAR_accountIdVoclabs: ${{ secrets.AWS_ACCOUNT_ID }}
       working-directory: src/terraform
       run: terraform apply -auto-approve -var user_pool_name="${USER_POOL_NAME}"
