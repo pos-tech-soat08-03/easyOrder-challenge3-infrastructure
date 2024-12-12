@@ -40,7 +40,7 @@ jobs:
         
     - name: Terraform Init
       working-directory: src/terraform
-      run: terraform init
+      run: terraform init -v
 
     - name: Terraform Validate
       working-directory: src/terraform
