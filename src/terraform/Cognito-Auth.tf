@@ -1,15 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-provider "aws" {
-  region     = "us-east-1"
-}
 
 # Cria user pool com configs orientadas a usuarios administradores
 resource "aws_cognito_user_pool" "easyorder_admin_pool" {
@@ -60,22 +48,12 @@ resource "aws_cognito_user_pool_client" "easyorder_app_client" {
     supported_identity_providers = ["COGNITO"]
 }
 
-# Cria usuarios administradores iniciais, ativos
+# Cria usuario administrador inicial, ativo
 resource "aws_cognito_user" "admin_user" {
     user_pool_id = aws_cognito_user_pool.easyorder_admin_pool.id
-    username     = "admin1"
+    username     = "admin-loja"
     attributes = {
         email = "email1@email.com"
-    }
-    password = "Admin123!"
-    depends_on = [aws_cognito_user_pool.easyorder_admin_pool]
-}
-
-resource "aws_cognito_user" "store_admin_user" {
-    user_pool_id = aws_cognito_user_pool.easyorder_admin_pool.id
-    username     = "admin2"
-    attributes = {
-        email = "email2@email.com"
     }
     password = "Admin123!"
     depends_on = [aws_cognito_user_pool.easyorder_admin_pool]
