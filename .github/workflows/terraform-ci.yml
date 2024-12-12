@@ -1,14 +1,14 @@
 name: Terraform CI - Checar Infraestrutura
 
 on:
-#  push:
-#    branches:
-#      - 'feature/**'
-#      - 'hotfix/**'
-#      - 'chore/**'
-  pull_request:
-    branches:
-        - main
+ push:
+   branches:
+     - 'feature/**'
+     - 'hotfix/**'
+     - 'chore/**'
+ pull_request:
+   branches:
+     - main
   
 jobs:
   terraform:
@@ -18,11 +18,8 @@ jobs:
     permissions:
       id-token: write
       contents: read
-      
-    if: github.ref == 'refs/heads/main'
-    environment: prod
+    
     steps:
-
     - name: Checkout Código
       uses: actions/checkout@v3
 
