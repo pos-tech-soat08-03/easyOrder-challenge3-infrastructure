@@ -51,7 +51,7 @@ jobs:
 
     - name: Terraform Plan
       working-directory: src/terraform
-      run: terraform plan -out=plan.out
+      run: terraform plan -var "accountIdVoclabs=${TF_VAR_accountIdVoclabs}" -out=plan.out
 
     - name: Terraform Apply
       env: 

@@ -1,11 +1,11 @@
 name: Terraform CI Infra EasyOrder
 
 on:
-  push:
-    branches:
-      - 'feature/**'
-      - 'hotfix/**'
-      - 'chore/**'
+#  push:
+#    branches:
+#      - 'feature/**'
+#      - 'hotfix/**'
+#      - 'chore/**'
   pull_request:
     branches:
         - main
@@ -14,7 +14,13 @@ jobs:
   terraform:
     name: Terraform CI Pipeline
     runs-on: ubuntu-latest
-
+    
+    permissions:
+      id-token: write
+      contents: read
+      
+    if: github.ref == 'refs/heads/main'
+    environment: prod
     steps:
 
     - name: Checkout Código
@@ -25,6 +31,17 @@ jobs:
       with:
         terraform_version: 1.5.0
 
+    - name: Configure AWS CLI 
+      uses: aws-actions/configure-aws-credentials@v1
+      with: 
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} 
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
+        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} 
+        aws-region: us-east-1
+          
+    - name: Verificar Credenciais AWS
+      run: aws sts get-caller-identity
+    
     - name: Terraform Init
       working-directory: src/terraform
       run: terraform init
