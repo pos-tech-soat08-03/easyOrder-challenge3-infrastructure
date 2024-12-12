@@ -1,4 +1,4 @@
-name: Terraform CI Infraestrutura
+name: Terraform CI - Checar Infraestrutura
 
 on:
 #  push:
@@ -28,12 +28,10 @@ jobs:
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: 1.5.0
     
     - name: Terraform Init
       working-directory: src/terraform
-      run: terraform init -backend=false -v
+      run: terraform init -backend=false
 
     - name: Terraform Validate
       working-directory: src/terraform
@@ -47,5 +45,5 @@ jobs:
 
     - name: Check Formatting
       working-directory: src/terraform
-      run: terraform fmt -check -v
+      run: terraform fmt -check
       
