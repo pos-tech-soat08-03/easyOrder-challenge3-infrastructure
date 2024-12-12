@@ -55,14 +55,6 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
 
-    - name: Gerar arquivo backend.tfvars
-      run: |
-        cat <<EOF > backend.tfvars
-        bucket = "${{ github.event.inputs.aws_backend_bucket }}"
-        key    = "easyorder-infra/terraform.tfstate"
-        region = "${{ github.event.inputs.aws_region }}"
-        EOF
-
     - name: Configure AWS CLI 
       uses: aws-actions/configure-aws-credentials@v1
       with: 
@@ -73,6 +65,15 @@ jobs:
         
     - name: Verificar Credenciais AWS
       run: aws sts get-caller-identity
+
+    - name: Gerar arquivo backend.tfvars
+      working-directory: src/terraform
+      run: |
+          cat <<EOF > backend.tfvars
+          bucket = "${{ github.event.inputs.aws_backend_bucket }}"
+          key    = "easyorder-infra/terraform.tfstate"
+          region = "${{ github.event.inputs.aws_region }}"
+          EOF
 
     - name: Terraform Init
       working-directory: src/terraform
