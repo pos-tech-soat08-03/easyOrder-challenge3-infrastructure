@@ -12,7 +12,7 @@ variable "clusterName" {
   default = "easyorder"
 }
 variable "instanceType" {
-  default = "t2.micro"
+  default = "t3.medium"
 }
 variable "policyArn" {
   default = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
@@ -27,4 +27,6 @@ variable "bucketStates" {
 variable "keyStates" {
   description = "The S3 key to store the Terraform state file"
   default     = "easyorder-infra/terraform.tfstate"
+
 }
+
