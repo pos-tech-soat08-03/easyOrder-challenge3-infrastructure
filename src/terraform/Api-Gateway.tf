@@ -95,11 +95,11 @@ resource "aws_api_gateway_method" "cliente_cadastrar" {
   authorization = "NONE"
 }
 resource "aws_api_gateway_integration" "cliente_cadastrar_integration" {
-  rest_api_id = aws_api_gateway_rest_api.api_gateway.id
-  resource_id = aws_api_gateway_resource.cliente_cadastrar.id
-  http_method = aws_api_gateway_method.cliente_cadastrar.http_method
-  type        = "HTTP_PROXY"
-  uri         = "https://example.com/cliente-cadastrar" # Altere para o URL real
+  rest_api_id             = aws_api_gateway_rest_api.api_gateway.id
+  resource_id             = aws_api_gateway_resource.cliente_cadastrar.id
+  http_method             = aws_api_gateway_method.cliente_cadastrar.http_method
+  type                    = "HTTP_PROXY"
+  uri                     = "https://example.com/cliente-cadastrar" # Altere para o URL real
   integration_http_method = "POST"
 }
 
@@ -116,11 +116,11 @@ resource "aws_api_gateway_method" "cliente_atualizar" {
   authorization = "NONE"
 }
 resource "aws_api_gateway_integration" "cliente_atualizar_integration" {
-  rest_api_id = aws_api_gateway_rest_api.api_gateway.id
-  resource_id = aws_api_gateway_resource.cliente_atualizar.id
-  http_method = aws_api_gateway_method.cliente_atualizar.http_method
-  type        = "HTTP_PROXY"
-  uri         = "https://example.com/cliente-atualizar" # Altere para o URL real
+  rest_api_id             = aws_api_gateway_rest_api.api_gateway.id
+  resource_id             = aws_api_gateway_resource.cliente_atualizar.id
+  http_method             = aws_api_gateway_method.cliente_atualizar.http_method
+  type                    = "HTTP_PROXY"
+  uri                     = "https://example.com/cliente-atualizar" # Altere para o URL real
   integration_http_method = "PUT"
 }
 
@@ -138,11 +138,11 @@ resource "aws_api_gateway_method" "cliente_listar" {
   authorizer_id = aws_api_gateway_authorizer.cognito_authorizer.id
 }
 resource "aws_api_gateway_integration" "cliente_listar_integration" {
-  rest_api_id = aws_api_gateway_rest_api.api_gateway.id
-  resource_id = aws_api_gateway_resource.cliente_listar.id
-  http_method = aws_api_gateway_method.cliente_listar.http_method
-  type        = "HTTP_PROXY"
-  uri         = "https://example.com/cliente-listar" # Altere para o URL real
+  rest_api_id             = aws_api_gateway_rest_api.api_gateway.id
+  resource_id             = aws_api_gateway_resource.cliente_listar.id
+  http_method             = aws_api_gateway_method.cliente_listar.http_method
+  type                    = "HTTP_PROXY"
+  uri                     = "https://example.com/cliente-listar" # Altere para o URL real
   integration_http_method = "GET"
 }
 
