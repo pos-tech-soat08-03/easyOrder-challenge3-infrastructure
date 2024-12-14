@@ -4,6 +4,7 @@ data "aws_iam_role" "labrole" {
 
 variable "accountIdVoclabs" {
   description = "ID da conta AWS"
+  default     = "442742266432"
 }
 variable "accessConfig" {
   default = "API_AND_CONFIG_MAP"
@@ -12,7 +13,7 @@ variable "clusterName" {
   default = "easyorder"
 }
 variable "instanceType" {
-  default = "t3.medium"
+  default = "t2.micro"
 }
 variable "policyArn" {
   default = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
@@ -27,6 +28,4 @@ variable "bucketStates" {
 variable "keyStates" {
   description = "The S3 key to store the Terraform state file"
   default     = "easyorder-infra/terraform.tfstate"
-
 }
-
