@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket = "${var.bucket}"
-    key    = "${var.key}"
-    region = "${var.region}"
+    bucket = "terraform-state-easyorder"
+    key    = "easyorder-infra/terraform.tfstate"
+    region = "us-east-1"
   }
 }
 
