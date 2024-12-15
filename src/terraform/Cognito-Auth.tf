@@ -3,9 +3,6 @@
 resource "aws_cognito_user_pool" "easyorder_admin_pool" {
   name = "easyorder-admin-pool"
 
-  admin_create_user_config {
-    allow_admin_create_user_only = true
-  }
   password_policy {
     minimum_length    = 8
     require_lowercase = true
@@ -13,7 +10,7 @@ resource "aws_cognito_user_pool" "easyorder_admin_pool" {
     require_symbols   = true
     require_uppercase = true
   }
-  username_attributes      = []
+  username_attributes      = ["email"]
   mfa_configuration        = "OFF"
   auto_verified_attributes = ["email"]
 
@@ -50,21 +47,21 @@ resource "aws_cognito_user_pool_client" "easyorder_app_client" {
   allowed_oauth_scopes                 = ["email", "openid"]
   explicit_auth_flows                  = ["ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH"]
   prevent_user_existence_errors        = "ENABLED"
-  callback_urls                        = ["https://localhost/"]
+  callback_urls                        = ["https://localhost:30000/auth-result"]
   supported_identity_providers         = ["COGNITO"]
 }
 
 # Cria usuario administrador inicial, ativo
 resource "aws_cognito_user" "admin_user" {
   user_pool_id = aws_cognito_user_pool.easyorder_admin_pool.id
-  username     = "admin-loja"
+  username     = "email-adminloja@email.com"
   attributes = {
-    email = "email1@email.com"
+    email = "email-adminloja@email.com"
   }
   password   = "Admin123!"
   depends_on = [aws_cognito_user_pool.easyorder_admin_pool]
 }
 
 output "cognito_login_url" {
-  value = "https://${aws_cognito_user_pool_domain.easyorder_domain.domain}.auth.${var.regionDefault}.amazoncognito.com/login?client_id=${aws_cognito_user_pool_client.easyorder_app_client.id}&response_type=token&scope=email+openid&redirect_uri=https://localhost/"
+  value = "https://${aws_cognito_user_pool_domain.easyorder_domain.domain}.auth.${var.regionDefault}.amazoncognito.com/login?client_id=${aws_cognito_user_pool_client.easyorder_app_client.id}&response_type=token&scope=email+openid&redirect_uri=https://localhost:30000/auth-result"
 }
