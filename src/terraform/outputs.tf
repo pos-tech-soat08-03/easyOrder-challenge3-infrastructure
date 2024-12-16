@@ -18,6 +18,19 @@ output "security_group_id" {
 output "private_subnet_ids" {
   value = module.vpc.private_subnets
 }
+
+
 output "vpc_id" {
   value = module.vpc.vpc_id
+  description = "ID da VPC criada"
+}
+
+output "public_subnets" {
+  value = module.vpc.public_subnets
+  description = "IDs das sub-redes públicas"
+}
+
+output "nat_gateway_ids" {
+  value = module.vpc.natgw_ids
+  description = "ID do NAT Gateway"
 }
