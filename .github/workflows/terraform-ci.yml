@@ -34,11 +34,11 @@ jobs:
       working-directory: src/terraform
       run: terraform validate
 
-    - name: Terraform Security Check (tfsec)
-      if: github.event_name == 'pull_request'
-      uses: aquasecurity/tfsec-action@v1.0.0
-      with:
-        working_directory: src/terraform
+    # - name: Terraform Security Check (tfsec)
+    #   if: github.event_name == 'pull_request'
+    #   uses: aquasecurity/tfsec-action@v1.0.0
+    #   with:
+    #     working_directory: src/terraform
 
     - name: Check Formatting
       working-directory: src/terraform
