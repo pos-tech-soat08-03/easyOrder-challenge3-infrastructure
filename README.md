@@ -16,6 +16,18 @@ src                         - diretório principal com arquivos .tf
     └── *.tf                - arquivos de configuração do Terraform
 ```
 
+## Configuração do CI/CD
+
+O repositório possui um workflow de CI/CD configurado com o Github Actions, que realiza a validação e deploy da infraestrutura na AWS.
+
+O workflow de CI é acionado a cada push no repositório, e executa as seguintes etapas:
+
+![alt text](img/image-1.png)
+
+O workflow de CD é acionado manualmente, e executa as seguintes etapas:
+
+![alt text](img/image.png)
+
 ## Subindo a infraestrutura com o Github Actions (Produção)
 
 Para subir a infraestrutura com o Github Actions, siga os passos abaixo:
@@ -34,6 +46,8 @@ aws_session_token: <AWS Session Token>
 aws_account_id: <AWS Account ID>
 aws_region: <'AWS Region>
 ```
+
+Ao final da execução do workflow, a infraestrutura será criada na AWS, e o estado do Terraform será armazenado no bucket criado no S3, cujo nome estará disponível no output do workflow, na etapa `Mostre o nome do bucket criado`
 
 ## Subindo a infraestrutura manualmente (Desenvolvimento)
 
@@ -65,8 +79,27 @@ region = "us-east-1"
 
 ``` bash
 terraform init -backend-config="backend.tfvars"
+``` 
+
+``` bash
 terraform plan 
+``` 
+
+``` bash
 terraform apply
 ``` 
 
 Com essa sequência de comandos, a infraestrutura será criada, e o estado do Terraform será armazenado no bucket criado no S3.
+
+## Destruindo a infraestrutura
+
+Para destruir a infraestrutura, execute o comando abaixo no diretório `src/terraform`:
+
+``` bash
+terraform destroy
+```
+
+## Documentação
+
+Para mais informações sobre a arquitetura, verifique no repositório do desafio 3 (aplicação):
+https://github.com/pos-tech-soat08-03/easyOrder-challenge3-application
